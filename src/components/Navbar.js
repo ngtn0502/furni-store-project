@@ -5,10 +5,11 @@ import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
-// import { useProductsContext } from '../context/products_context'
+import { useProductsContext } from "../context/main_context";
 // import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
+  const { sideBarOpenHandler } = useProductsContext();
   return (
     <NavContainer>
       <div className="nav-center">
@@ -16,7 +17,7 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} alt="a logo" />
           </Link>
-          <button className="nav-toggle">
+          <button className="nav-toggle" onClick={sideBarOpenHandler}>
             <FaBars></FaBars>
           </button>
         </div>
@@ -40,7 +41,6 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-
   .nav-center {
     width: 90vw;
     margin: 0 auto;

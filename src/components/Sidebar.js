@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-// import { useProductsContext } from '../context/products_context'
+import { useProductsContext } from "../context/main_context";
 import { FaTimes } from "react-icons/fa";
 import { links } from "../utils/constants";
 import styled from "styled-components";
@@ -9,21 +9,27 @@ import CartButtons from "./CartButtons";
 // import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-  const isOpen = true;
+  const { isSideBarOpen, sideBarCloseHandler } = useProductsContext();
   return (
     <SidebarContainer>
-      <aside className={isOpen ? "sidebar show-sidebar" : "sidebar"}>
+      <aside className={isSideBarOpen ? "sidebar show-sidebar" : "sidebar"}>
         <div className="sidebar-header">
           <img src={logo} className="logo" />
-          <button className="close-btn">
+          <button
+            className="close-btn"
+            type="button"
+            onClick={sideBarCloseHandler}
+          >
             <FaTimes></FaTimes>
           </button>
         </div>
-        <ul>
+        <ul className="links">
           {links.map((link) => {
             return (
-              <li key={link.id} className="links">
-                <Link to={link.url}>{link.text}</Link>
+              <li key={link.id}>
+                <Link to={link.url} onClick={sideBarCloseHandler}>
+                  {link.text}
+                </Link>
               </li>
             );
           })}
