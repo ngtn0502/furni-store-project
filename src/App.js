@@ -1,11 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import { Navbar, Sidebar, Footer } from "./components";
-import { AboutPage, HomePage, ErrorPage, ProductsPage } from "./pages";
+import { Navbar, Sidebar, Footer } from "./components";
+import {
+  AboutPage,
+  HomePage,
+  ErrorPage,
+  ProductsPage,
+  SingleProductPage,
+  CartPage,
+} from "./pages";
 
 function App() {
   return (
     <Router>
+      <Navbar></Navbar>
+      <Sidebar></Sidebar>
       <Switch>
         <Route path="/" exact>
           <HomePage></HomePage>
@@ -13,13 +22,20 @@ function App() {
         <Route path="/about">
           <AboutPage></AboutPage>
         </Route>
-        <Route path="/products/:id">
+        <Route path="/cart">
+          <CartPage></CartPage>
+        </Route>
+        <Route path="/products" exact>
           <ProductsPage></ProductsPage>
+        </Route>
+        <Route path="/products/:id">
+          <SingleProductPage></SingleProductPage>
         </Route>
         <Route path="*">
           <ErrorPage></ErrorPage>
         </Route>
       </Switch>
+      <Footer></Footer>
     </Router>
   );
 }
