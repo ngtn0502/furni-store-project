@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import { links } from '../utils/constants'
+import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
 // import { useProductsContext } from '../context/products_context'
 // import { useUserContext } from '../context/user_context'
@@ -16,20 +16,18 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} alt="a logo" />
           </Link>
-          <div className="nav-toggle">
+          <button className="nav-toggle">
             <FaBars></FaBars>
-          </div>
+          </button>
         </div>
         <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/products">Products</Link>
-          </li>
+          {links.map((link) => {
+            return (
+              <li key={link.id}>
+                <Link to={`${link.url}`}>{link.text}</Link>
+              </li>
+            );
+          })}
         </ul>
         <CartButtons></CartButtons>
       </div>
