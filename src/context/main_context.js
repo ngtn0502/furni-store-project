@@ -54,31 +54,29 @@ export const ProductsProvider = ({ children }) => {
     fetchData(url);
   }, []);
 
-  // For handle fetch single product data
+  // For handle fetch single product data and pass it down to the single product page
 
   const fetchSingleProduct = async (url) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
+      console.log(error);
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };
 
-  const featureProductHandler = (id) => {
-    fetchSingleProduct(`${s_url}${id}`);
-  };
-
-  // Pass every value after dispatching for the nested component
+  // Pass every value after dispatching to the nested component
   return (
     <ProductsContext.Provider
       value={{
         ...state,
         sideBarOpenHandler,
         sideBarCloseHandler,
-        featureProductHandler,
+        fetchSingleProduct,
       }}
     >
       {children}

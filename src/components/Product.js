@@ -3,19 +3,13 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useProductsContext } from "../context/main_context";
 
 const Product = ({ id, name, image, price }) => {
-  const { featureProductHandler } = useProductsContext();
   return (
     <Wrapper>
       <div className="container">
         <img src={image} />
-        <Link
-          to={`/products/${id}`}
-          className="link"
-          onClick={featureProductHandler.bind(null, id)}
-        >
+        <Link to={`/products/${id}`} className="link">
           <FaSearch></FaSearch>
         </Link>
       </div>

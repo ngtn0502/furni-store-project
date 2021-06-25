@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const ProductImages = ({ images }) => {
-  const [imgClick, setImgClick] = useState();
-  const imgClickHandler = (e) => {
-    e.preventDefault();
-    setImgClick((prev) => !prev);
-  };
-  console.log(images);
+const ProductImages = ({ images = [{ url: " " }] }) => {
+  const [imgClick, setImgClick] = useState(images[0].url);
+
   return (
     <Wrapper>
-      {images.map(({ url: urlMain, thumbnails: { small, large, full } }) => {
-        return (
-          <>
-            <img src={urlMain} className="main" />
-            <div className="gallery">
-              <img
-                src={small.url}
-                className={imgClick ? "active" : ""}
-                onClick={imgClickHandler}
-              />
-            </div>
-          </>
-        );
-      })}
+      <img src={imgClick} className="main" />
+      <div className="gallery">
+        {images.map(({ url }) => {
+          return (
+            <img
+              src={url}
+              className={url === imgClick ? "active" : null}
+              onClick={() => {
+                setImgClick(url);
+              }}
+            />
+          );
+        })}
+      </div>
     </Wrapper>
   );
 };

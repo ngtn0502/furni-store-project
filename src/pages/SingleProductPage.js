@@ -15,16 +15,39 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const SingleProductPage = () => {
+  const params = useParams();
+  const history = useHistory();
   const {
-    featureProductHandler,
+    fetchSingleProduct,
     singleProducts__isLoading,
     singleProducts__error,
     singleProducts,
   } = useProductsContext();
 
-  const { id, name, price, company, description, stock } = singleProducts;
-  console.log(singleProducts);
+  useEffect(() => {
+    fetchSingleProduct(`${url}${params.id}`);
+  }, [params.id]);
 
+  const {
+    id,
+    name,
+    price,
+    company,
+    description,
+    stock,
+    images,
+    stars,
+    reviews,
+    colors,
+  } = singleProducts;
+  console.log(singleProducts);
+  useEffect(() => {
+    if (singleProducts__error) {
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
+    }
+  }, [singleProducts__error]);
   if (singleProducts__isLoading) {
     return <Loading></Loading>;
   }
@@ -36,7 +59,7 @@ const SingleProductPage = () => {
     <Wrapper>
       <PageHero
         title="products"
-        title2={`/products/${id}`}
+        title2={`/products/${params.id}`}
         name2={name}
       ></PageHero>
       <div className="section section-center page">
@@ -44,15 +67,15 @@ const SingleProductPage = () => {
           Back to products
         </Link>
         <div className="product-center">
-          <ProductImages key={id} {...singleProducts}></ProductImages>
+          <ProductImages images={images}></ProductImages>
           <section className="content">
             <h2>{name}</h2>
-            <Stars id={id}></Stars>
+            <Stars stars={stars} reviews={reviews}></Stars>
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{description}</p>
             <p className="info">
               <span>Available : </span>
-              {stock ? "in stock" : "out of stock"}
+              {stock > 0 ? "in stock" : "out of stock"}
             </p>
             <p className="info">
               <span>SKU :</span>
@@ -63,7 +86,7 @@ const SingleProductPage = () => {
               {company}
             </p>
             <hr />
-            <AddToCart></AddToCart>
+            {stock > 0 && <AddToCart colors={colors}></AddToCart>}
           </section>
         </div>
       </div>
