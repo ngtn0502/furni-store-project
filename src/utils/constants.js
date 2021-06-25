@@ -1,5 +1,6 @@
 import React from "react";
 import { GiCompass, GiDiamondHard, GiStabbedNote } from "react-icons/gi";
+// For the value of nav bar
 export const links = [
   {
     id: 1,
@@ -18,6 +19,7 @@ export const links = [
   },
 ];
 
+// For the value of services part
 export const services = [
   {
     id: 1,
@@ -39,6 +41,7 @@ export const services = [
   },
 ];
 
+// For the API from the instructor
 export const products_url = "https://course-api.com/react-store-products";
 
 export const single_product_url = `https://course-api.com/react-store-single-product?id=`;
