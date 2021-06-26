@@ -11,6 +11,9 @@ import AddToCart from "./AddToCart";
 import Error from "./Error";
 import Loading from "./Loading";
 import ProductImages from "./ProductImages";
+import Filters from "./Filters";
+import ProductList from "./ProductList";
+import Sort from "./Sort";
 
 export {
   Navbar,
@@ -26,4 +29,7 @@ export {
   Error,
   Loading,
   ProductImages,
+  Filters,
+  ProductList,
+  Sort,
 };

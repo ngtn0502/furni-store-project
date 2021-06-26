@@ -4,26 +4,15 @@ import { useState } from "react";
 import styled from "styled-components";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-const AmountButtons = () => {
-  const [amountCart, setAmountCart] = useState(1);
-
-  const plusCartHandler = (e) => {
-    setAmountCart((prev) => prev + 1);
-  };
-  const minusCartHandler = (e) => {
-    if (amountCart < 1) {
-      return;
-    }
-    setAmountCart((prev) => prev - 1);
-  };
+const AmountButtons = ({ increase, decrease, amountCart }) => {
   return (
     <Wrapper>
-      <button onClick={plusCartHandler}>
+      <button onClick={increase}>
         <FaPlus></FaPlus>
       </button>
       <h2>{amountCart}</h2>
-      <button>
-        <FaMinus onClick={minusCartHandler}></FaMinus>
+      <button onClick={decrease}>
+        <FaMinus></FaMinus>
       </button>
     </Wrapper>
   );
@@ -35,6 +24,10 @@ const Wrapper = styled.div`
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
+  .outStock {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
   h2 {
     margin-bottom: 0;
   }

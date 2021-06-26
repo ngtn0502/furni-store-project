@@ -3,7 +3,7 @@ import reducer from "../reducers/cart_reducer";
 import { ADD_TO_CART } from "../actions";
 
 const initialState = {
-  amountCart: 1,
+  amountCart: 0,
 };
 
 const CartContext = React.createContext();
@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const amountCartHandler = (amount) => {
     dispatch({ type: ADD_TO_CART, payload: amount });
+    
   };
   return (
     <CartContext.Provider

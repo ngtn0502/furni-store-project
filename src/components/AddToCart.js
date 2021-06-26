@@ -5,10 +5,29 @@ import { FaCheck } from "react-icons/fa";
 // import { useCartContext } from "../context/cart_context";
 import AmountButtons from "./AmountButtons";
 
-const AddToCart = ({ colors }) => {
+const AddToCart = ({ colors, stock }) => {
   const [mainColor, setMainColor] = useState(colors[0]);
-  // const [amountCart, setAmountCart] = useState(1);
-  const { amountCartHandler } = useCartContext;
+  // const { amountCartHandler } = useCartContext();
+  const [amountCart, setAmountCart] = useState(1);
+  const increaseCartHandler = (e) => {
+    setAmountCart((prev) => {
+      let tempAmount = prev + 1;
+      if (prev >= stock) {
+        tempAmount = stock;
+      }
+      return tempAmount;
+    });
+  };
+
+  const decreaseCartHandler = (e) => {
+    setAmountCart((prev) => {
+      let tempAmount = prev - 1;
+      if (prev <= 1) {
+        tempAmount = 1;
+      }
+      return tempAmount;
+    });
+  };
 
   const colorClickHandler = (index) => {
     setMainColor(colors[index]);
@@ -33,17 +52,20 @@ const AddToCart = ({ colors }) => {
         </div>
       </div>
       <div className="btn-container">
-        <AmountButtons></AmountButtons>
-        <a
+        <AmountButtons
+          increase={increaseCartHandler}
+          decrease={decreaseCartHandler}
+          amountCart={amountCart}
+        ></AmountButtons>
+        <Link
           href="/cart"
           className="btn"
-          onClick={(e) => {
-            e.preventDefault();
-            return amountCartHandler();
-          }}
+          // onClick={() => {
+          //   return amountCartHandler(amountCart);
+          // }}
         >
           Add to cart
-        </a>
+        </Link>
       </div>
     </Wrapper>
   );
