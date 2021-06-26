@@ -8,9 +8,10 @@ const ProductImages = ({ images = [{ url: " " }] }) => {
     <Wrapper>
       <img src={imgClick} className="main" />
       <div className="gallery">
-        {images.map(({ url }) => {
+        {images.map(({ url, id }) => {
           return (
             <img
+              key={id}
               src={url}
               className={url === imgClick ? "active" : null}
               onClick={() => {

@@ -4,11 +4,20 @@ import GridView from "./GridView";
 import ListView from "./ListView";
 
 const ProductList = () => {
-  const { filtered__products: products } = useFilterContext();
+  const { filtered__products: products, view__type } = useFilterContext();
+  // Check whether products is empty array or not
+  if (products.length < 1) {
+    return (
+      <h5 style={{ textTransform: "none" }}>
+        Sorry, there is no product match your condition!
+      </h5>
+    );
+  }
+
   return (
     <>
-      {/* <GridView products={products}></GridView>; */}
-      <ListView products={products}></ListView>
+      {view__type && <GridView products={products}></GridView>}
+      {!view__type && <ListView products={products}></ListView>}
     </>
   );
 };
