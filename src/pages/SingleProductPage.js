@@ -48,6 +48,7 @@ const SingleProductPage = () => {
       }, 3000);
     }
   }, [singleProducts__error]);
+  // Handler loading and error
   if (singleProducts__isLoading) {
     return <Loading></Loading>;
   }
@@ -86,7 +87,13 @@ const SingleProductPage = () => {
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart colors={colors} stock={stock}></AddToCart>}
+            {stock > 0 && (
+              <AddToCart
+                colors={colors}
+                stock={stock}
+                products={singleProducts}
+              ></AddToCart>
+            )}
           </section>
         </div>
       </div>

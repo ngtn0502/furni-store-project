@@ -117,9 +117,26 @@ const filteredReducer = (state, action) => {
     }
     if (color !== "all") {
       tempProducts = tempProducts.filter((product) => {
-        return product.color === color;
+        // Find return undefined if it cant find the value and return the first value if find
+        // And the value is truthy value - undefined is falsy value => it work in the return of filter
+        return product.colors.find((item) => item === color);
       });
     }
+
+    if (price == 0) {
+      tempProducts = [];
+    } else {
+      tempProducts = tempProducts.filter((product) => {
+        return product.price <= price;
+      });
+    }
+
+    if (free__shipping) {
+      tempProducts = tempProducts.filter((product) => {
+        return product.shipping == free__shipping;
+      });
+    }
+
     return { ...state, filtered__products: tempProducts };
   }
 

@@ -22,114 +22,115 @@ const Filters = () => {
   const colors = getUniqueValues(all__products, "colors");
   return (
     <Wrapper>
-      {/* Search filter */}
-      <form onSubmit={(e) => e.preventDefault()} className="form-control">
-        <input
-          type="text"
-          value={name}
-          name="name"
-          className="search-input"
-          placeholder="search for item"
-          onChange={filterChangeHandler}
-        />
-      </form>
-      {/* Category filter */}
-      <div className="form-control">
-        <h5>category</h5>
-        <div>
-          {categories.map((value, index) => {
-            return (
-              <button
-                key={index}
-                onClick={filterChangeHandler}
-                type="button"
-                name="category"
-                className={value === category ? "active" : null}
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      {/* Company filter */}
-      <div className="form-control">
-        <h5>category</h5>
-        <select
-          name="company"
-          className="company"
-          onChange={filterChangeHandler}
-          value={company}
-        >
-          {companies.map((value, index) => {
-            return (
-              <option key={index} value={value}>
-                {value}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <div className="form-control">
-        <div className="colors">
-          {colors.map((value, index) => {
-            if (value === "all") {
+      <div className="content">
+        {/* Search filter */}
+        <form onSubmit={(e) => e.preventDefault()} className="form-control">
+          <input
+            type="text"
+            value={name}
+            name="name"
+            className="search-input"
+            placeholder="search for item"
+            onChange={filterChangeHandler}
+          />
+        </form>
+        {/* Category filter */}
+        <div className="form-control">
+          <h5>category</h5>
+          <div>
+            {categories.map((value, index) => {
               return (
                 <button
-                  data-value="all"
-                  name="color"
-                  className={`${
-                    color === value ? "all-btn active" : "all-btn"
-                  }`}
+                  key={index}
                   onClick={filterChangeHandler}
+                  type="button"
+                  name="category"
+                  className={value === category ? "active" : null}
                 >
-                  all
+                  {value}
                 </button>
               );
-            }
-            return (
-              <button
-                key={index}
-                name="color"
-                data-value={`${value}`}
-                className={`${
-                  value === color ? "color-btn active" : "color-btn"
-                }`}
-                onClick={filterChangeHandler}
-                style={{ background: value }}
-              >
-                {value === color ? <FaCheck></FaCheck> : null}
-              </button>
-            );
-          })}
+            })}
+          </div>
         </div>
-      </div>
-      {/* Price filter */}
-      <div className="form-control">
-        <h5>Price</h5>
-        <p>{formatPrice(price)}</p>
-        <input
-          type="range"
-          name="price"
-          min={min__price}
-          max={max__price}
-          value={price}
-          onChange={filterChangeHandler}
-        />
-      </div>
-      {/* Shipping filter */}
-      <div className="form-control shipping">
-        <label htmlFor="shipping">free shipping</label>
-        <input
-          type="checkbox"
-          name="free__shipping"
-          id="shipping"
-          checked={free__shipping}
-          onChange={filterChangeHandler}
-        />
-      </div>
-      {/* Clear filter  */}
-      <div className="form-control">
+        {/* Company filter */}
+        <div className="form-control">
+          <h5>category</h5>
+          <select
+            name="company"
+            className="company"
+            onChange={filterChangeHandler}
+            value={company}
+          >
+            {companies.map((value, index) => {
+              return (
+                <option key={index} value={value}>
+                  {value}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="form-control">
+          <div className="colors">
+            {colors.map((value, index) => {
+              if (value === "all") {
+                return (
+                  <button
+                    data-value="all"
+                    name="color"
+                    className={`${
+                      color === value ? "all-btn active" : "all-btn"
+                    }`}
+                    onClick={filterChangeHandler}
+                  >
+                    all
+                  </button>
+                );
+              }
+              return (
+                <button
+                  key={index}
+                  name="color"
+                  data-value={`${value}`}
+                  className={`${
+                    value === color ? "color-btn active" : "color-btn"
+                  }`}
+                  onClick={filterChangeHandler}
+                  style={{ background: value }}
+                >
+                  {value === color ? <FaCheck></FaCheck> : null}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        {/* Price filter */}
+        <div className="form-control">
+          <h5>Price</h5>
+          <p>{formatPrice(price)}</p>
+          <input
+            type="range"
+            name="price"
+            min={min__price}
+            max={max__price}
+            value={price}
+            onChange={filterChangeHandler}
+          />
+        </div>
+        {/* Shipping filter */}
+        <div className="form-control shipping">
+          <label htmlFor="shipping">free shipping</label>
+          <input
+            type="checkbox"
+            name="free__shipping"
+            id="shipping"
+            checked={free__shipping}
+            onChange={filterChangeHandler}
+          />
+        </div>
+        {/* Clear filter  */}
+        <div className="form-control"></div>
         <button
           type="button"
           className="clear-btn"
@@ -236,7 +237,7 @@ const Wrapper = styled.section`
   @media (min-width: 768px) {
     .content {
       position: sticky;
-      top: 1rem;
+      top: 3rem;
     }
   }
 `;
