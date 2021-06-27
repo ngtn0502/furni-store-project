@@ -40,7 +40,6 @@ const SingleProductPage = () => {
     reviews,
     colors,
   } = singleProducts;
-  console.log(singleProducts);
   useEffect(() => {
     if (singleProducts__error) {
       setTimeout(() => {

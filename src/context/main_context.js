@@ -61,10 +61,8 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
-      console.log(error);
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };

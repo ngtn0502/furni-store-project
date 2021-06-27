@@ -29,7 +29,7 @@ const AddToCart = ({ colors, stock, products }) => {
       return tempAmount;
     });
   };
-
+  console.log(products);
   const colorClickHandler = (index) => {
     setMainColor(colors[index]);
   };

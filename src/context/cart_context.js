@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/cart_reducer";
-import { ADD_TO_CART } from "../actions";
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  COUNT_CART_TOTALS,
+  REMOVE_CART_ITEM,
+  TOGGLE_CART_ITEM_AMOUNT,
+} from "../actions";
 
 const initialState = {
   cart: [],
@@ -13,8 +19,8 @@ const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const amountCartHandler = (amount) => {
-    dispatch({ type: ADD_TO_CART, payload: amount });
+  const amountCartHandler = ({ amountCart, products }) => {
+    dispatch({ type: ADD_TO_CART, payload: { amountCart, products } });
   };
   return (
     <CartContext.Provider
