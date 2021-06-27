@@ -32,17 +32,16 @@ const FilterContext = React.createContext();
 
 export const FilterProvider = (props) => {
   const { products } = useProductsContext();
-  console.log(products);
   const [state, dispatch] = useReducer(filteredReducer, initialState);
 
   // handle loading products from main context
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products });
   }, [products]);
-
   // handle sorting products
   // handle filtering products
   // dependence for filter and sort
+  // In that useEffect => list of products after filtering => it will be sorted and render to the screen
   useEffect(() => {
     dispatch({ type: FILTER_PRODUCTS });
     dispatch({ type: SORT_PRODUCTS });
@@ -66,7 +65,20 @@ export const FilterProvider = (props) => {
     if (name === "category") {
       value = e.target.textContent;
     }
+    if (name === "color") {
+      value = e.target.dataset.value;
+    }
+    if (name === "price") {
+      value = Number(value);
+    }
+    if (name === "free__shipping") {
+      value = e.target.checked;
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+  };
+
+  const clearFilterHandler = () => {
+    dispatch({ type: CLEAR_FILTERS });
   };
 
   return (
@@ -77,6 +89,7 @@ export const FilterProvider = (props) => {
         setListViewHandler,
         sortChangeHandler,
         filterChangeHandler,
+        clearFilterHandler,
       }}
     >
       {props.children}
