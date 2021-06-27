@@ -8,4 +8,10 @@ export const formatPrice = (number) => {
   return numberFormat;
 };
 
-export const getUniqueValues = () => {};
+export const getUniqueValues = (arr, key) => {
+  let keyFeature = arr.map((item) => item[key]);
+  if (key === "colors") {
+    keyFeature = keyFeature.flat();
+  }
+  return ["all", ...new Set(keyFeature)];
+};

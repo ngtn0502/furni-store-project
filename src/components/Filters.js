@@ -1,12 +1,57 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import React from "react";
+import styled from "styled-components";
+import { useFilterContext } from "../context/filter_context";
+import { getUniqueValues, formatPrice } from "../utils/helpers";
+import { FaCheck } from "react-icons/fa";
 
 const Filters = () => {
-  return <h4>filters</h4>
-}
+  const { filter, all__products, filterChangeHandler } = useFilterContext();
+  const {
+    name,
+    category,
+    company,
+    color,
+    min__price,
+    max__price,
+    price,
+    free__shipping,
+  } = filter;
+  const categories = getUniqueValues(all__products, "category");
+  const companies = getUniqueValues(all__products, "company");
+  const colors = getUniqueValues(all__products, "colors");
+  return (
+    <Wrapper>
+      <form onSubmit={(e) => e.preventDefault()} className="form-control">
+        <input
+          type="text"
+          value={name}
+          name="name"
+          className="search-input"
+          placeholder="search for item"
+          onChange={filterChangeHandler}
+        />
+      </form>
+      <div className="form-control">
+        <h5>category</h5>
+        <div>
+          {categories.map((value, index) => {
+            return (
+              <button
+                key={index}
+                onClick={filterChangeHandler}
+                type="button"
+                name="category"
+                className={value === category ? "active" : null}
+              >
+                {value}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   .form-control {
@@ -105,6 +150,6 @@ const Wrapper = styled.section`
       top: 1rem;
     }
   }
-`
+`;
 
-export default Filters
+export default Filters;
