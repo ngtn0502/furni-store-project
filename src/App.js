@@ -8,6 +8,8 @@ import {
   ProductsPage,
   SingleProductPage,
   CartPage,
+  CheckoutPage,
+  PrivateRoute,
 } from "./pages";
 
 function App() {
@@ -30,6 +32,9 @@ function App() {
         </Route>
         <Route path="/products/:id">
           <SingleProductPage></SingleProductPage>
+        </Route>
+        <Route path="/checkout">
+          <CheckoutPage></CheckoutPage>
         </Route>
         <Route path="*">
           <ErrorPage></ErrorPage>

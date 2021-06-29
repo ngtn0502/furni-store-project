@@ -4,8 +4,11 @@ const Footer = () => {
   return (
     <Wrapper>
       <h5>
-        © {new Date().getFullYear()} <span> ComfySloth </span>All rights
-        reserved
+        © {new Date().getFullYear()}
+        <span>
+          <a href="#"> G - Interior </a>
+        </span>
+        All rights reserved
       </h5>
     </Wrapper>
   );
@@ -20,7 +23,10 @@ const Wrapper = styled.footer`
   background: var(--clr-black);
   text-align: center;
   span {
-    color: var(--clr-primary-5);
+    a {
+      text-decoration: none;
+      color: var(--clr-primary-5);
+    }
   }
   h5 {
     color: var(--clr-white);

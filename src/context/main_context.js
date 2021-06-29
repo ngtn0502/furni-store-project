@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/main_reducer";
 import {

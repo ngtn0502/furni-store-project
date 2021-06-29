@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { useCartContext } from "../context/cart_context";
-// import { useUserContext } from '../context/user_context'
+import { useUserContext } from "../context/user_context";
 import { formatPrice } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
 const CartTotals = () => {
-  const { total__amount, shippingFee } = useCartContext;
+  const { total__amount, shippingFee } = useCartContext();
+  const { myUser, loginWithRedirect } = useUserContext();
   return (
     <Wrapper>
       <div>
@@ -22,7 +23,16 @@ const CartTotals = () => {
             Order Total: <span>{formatPrice(total__amount + shippingFee)}</span>
           </h4>
         </article>
-        <button className="btn">LOGIN TO PAYMENT</button>
+        {!myUser && (
+          <button className="btn" onClick={loginWithRedirect}>
+            login to payment
+          </button>
+        )}
+        {myUser && (
+          <Link to="/checkout" className="btn">
+            go to payment
+          </Link>
+        )}
       </div>
     </Wrapper>
   );

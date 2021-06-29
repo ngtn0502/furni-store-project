@@ -2,12 +2,12 @@ import React from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import { useProductsContext } from '../context/products_context'
 import { useCartContext } from "../context/cart_context";
-// import { useUserContext } from '../context/user_context'
+import { useUserContext } from "../context/user_context";
 
 const CartButtons = () => {
   const { total__item } = useCartContext();
+  const { loginWithRedirect, logout, myUser } = useUserContext();
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn">
@@ -17,9 +17,20 @@ const CartButtons = () => {
           <span className="cart-value">{total__item}</span>
         </span>
       </Link>
-      <button type="button" className="auth-btn">
-        Login <FaUserPlus></FaUserPlus>
-      </button>
+      {!myUser && (
+        <button type="button" className="auth-btn" onClick={loginWithRedirect}>
+          Login <FaUserPlus></FaUserPlus>
+        </button>
+      )}
+      {myUser && (
+        <button
+          type="button"
+          className="auth-btn"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          Logout <FaUserMinus></FaUserMinus>
+        </button>
+      )}
     </Wrapper>
   );
 };
@@ -32,7 +43,7 @@ const Wrapper = styled.div`
 
   .cart-btn {
     color: var(--clr-grey-1);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     letter-spacing: var(--spacing);
     color: var(--clr-grey-1);
     display: flex;
@@ -67,7 +78,7 @@ const Wrapper = styled.div`
     align-items: center;
     background: transparent;
     border-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
     color: var(--clr-grey-1);
     letter-spacing: var(--spacing);

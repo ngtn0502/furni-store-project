@@ -4,6 +4,8 @@ import ErrorPage from "./ErrorPage";
 import ProductsPage from "./ProductsPage";
 import SingleProductPage from "./SingleProductPage";
 import CartPage from "./CartPage";
+import CheckoutPage from "./CheckoutPage";
+import PrivateRoute from "./PrivateRoute";
 
 export {
   AboutPage,
@@ -12,4 +14,6 @@ export {
   ProductsPage,
   SingleProductPage,
   CartPage,
+  CheckoutPage,
+  PrivateRoute,
 };

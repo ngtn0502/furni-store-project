@@ -1,21 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.svg";
+import logo2 from "../assets/logo2.PNG";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/main_context";
-// import { useUserContext } from '../context/user_context'
+import { useUserContext } from "../context/user_context";
 
 const Nav = () => {
   const { sideBarOpenHandler } = useProductsContext();
+  const { myUser } = useUserContext();
   return (
     <NavContainer>
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={logo} alt="a logo" />
+            <img src={logo2} alt="a logo" />
           </Link>
           <button className="nav-toggle" onClick={sideBarOpenHandler}>
             <FaBars></FaBars>
@@ -29,6 +30,11 @@ const Nav = () => {
               </li>
             );
           })}
+          {myUser && (
+            <li>
+              <Link to="/checkout">Checkout</Link>
+            </li>
+          )}
         </ul>
         <CartButtons></CartButtons>
       </div>
@@ -37,7 +43,7 @@ const Nav = () => {
 };
 
 const NavContainer = styled.nav`
-  height: 5rem;
+  height: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +58,7 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     img {
       width: 175px;
+      height: 100px;
       margin-left: -15px;
     }
   }
@@ -88,7 +95,7 @@ const NavContainer = styled.nav`
       }
       a {
         color: var(--clr-grey-3);
-        font-size: 1rem;
+        font-size: 1.3rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         padding: 0.5rem;

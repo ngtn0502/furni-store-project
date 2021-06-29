@@ -20,7 +20,7 @@ const Services = () => {
         <div className="services-center">
           {services.map((item) => {
             return (
-              <article className="service">
+              <article className="service" key={item.id}>
                 <span className="icon">{item.icon}</span>
                 <h4>{item.title}</h4>
                 <p>{item.text}</p>

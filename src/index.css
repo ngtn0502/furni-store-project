@@ -190,7 +190,7 @@ p {
   text-align: center;
 }
 .title .underline {
-  width: 6rem;
+  width: 8rem;
   height: 0.25rem;
   background: #49a6e9;
   background: var(--clr-primary-5);

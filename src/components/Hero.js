@@ -13,9 +13,9 @@ const Hero = () => {
           Comfort zone
         </h1>
         <p>
-          G - Interior là một đơn vị chuyên thiết kế thi công nội thất hiện đại
-          thanh lịch. Dẫn đầu trong việc Mix match các phong cách nội thất,
-          chúng tôi sáng tạo ra các không gian sống đậm chất riêng của gia chủ.
+          G - Interior is specializing in elegant modern interior design and
+          construction. Leading in mixing and matching interior design, we
+          create unique living spaces for our customers.
         </p>
         <Link to="/products" className="btn hero-btn">
           Shop Now

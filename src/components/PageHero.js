@@ -6,8 +6,10 @@ const PageHero = ({ title, title2, name2 }) => {
     <Wrapper>
       <div className="section-center">
         <h3>
-          <Link to="/">Home</Link> / <Link to={`/${title}`}> {title}</Link>
-          <Link to={title2}>/ {name2}</Link>
+          <Link to="/">Home</Link> <Link to={`/${title}`}>/ {title}</Link>
+          <Link to={title2}>
+            {name2 && "/"} {name2}
+          </Link>
         </h3>
       </div>
     </Wrapper>

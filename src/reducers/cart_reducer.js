@@ -96,11 +96,25 @@ const cart_reducer = (state, action) => {
           return product;
         }
       });
+      temp = temp.filter((item) => item.item != 0);
     }
     return {
       ...state,
       cart: temp,
     };
+  }
+
+  if (action.type === COUNT_CART_TOTALS) {
+    const { total__amount, total__item } = state.cart.reduce(
+      (obj, product) => {
+        obj.total__amount += product.item * product.price;
+        obj.total__item += product.item;
+        return obj;
+      },
+      { total__amount: 0, total__item: 0 }
+    );
+
+    return { ...state, total__amount, total__item };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);
