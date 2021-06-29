@@ -1,4 +1,4 @@
-                                    ## ReactJS project: G - Interior
+# ReactJS project: G - Interior
 
 ## Technology information (tech stacks):
 
