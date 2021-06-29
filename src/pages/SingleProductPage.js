@@ -91,6 +91,7 @@ const SingleProductPage = () => {
                 colors={colors}
                 stock={stock}
                 products={singleProducts}
+                id={id}
               ></AddToCart>
             )}
           </section>
