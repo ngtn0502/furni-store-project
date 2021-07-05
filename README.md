@@ -1,12 +1,12 @@
 # ReactJS project: G - Interior
 
-### An Interior E-commerce Website.
+#### An Interior E-commerce Website.
 
-### This website allow customer can view list of sortable products and buy it also
+#### This website allow customer can view list of sortable products and buy it also
 
-### Use REST API to fetch products list data to practicing purpose
+#### Use REST API to fetch products list data to practicing purpose
 
-## Technology Used:
+# Technology Used:
 
 ##### React Router
 
@@ -18,12 +18,12 @@
 
 ##### CSS3
 
-## Others:
+# Others:
 
-#### Auth0 - (for control login page)
+##### Auth0 - (for control login page)
 
 
-## Public REST API that i use:
+# Public REST API that i use:
 
     ```
 
