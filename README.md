@@ -1,18 +1,29 @@
 # ReactJS project: G - Interior
 
-## Technology information (tech stacks):
+### An Interior E-commerce Website.
 
-    ```
-    ReactJS
-    React Router
-    Redux - (update soon)
-    Styled Component
-    HTML5
-    CSS3
-    Auth0 - (for control login page)
-    ```
+### This website allow customer can view list of sortable products and buy it also
 
-## Public API that i use:
+### Use REST API to fetch products list data to practicing purpose
+
+## Technology Used:
+
+##### React Router
+
+##### Redux - (update soon)
+
+##### Styled Component
+
+##### HTML5
+
+##### CSS3
+
+## Others:
+
+#### Auth0 - (for control login page)
+
+
+## Public REST API that i use:
 
     ```
 
